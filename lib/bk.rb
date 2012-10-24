@@ -1,16 +1,9 @@
-require 'text/levenshtein'
 require 'yaml'
 
 module BK
   # Paul Battley 2007
   # See http://blog.notdot.net/archives/30-Damn-Cool-Algorithms,-Part-1-BK-Trees.html
   # and http://www.dcc.uchile.cl/~gnavarro/ps/spire98.2.ps.gz
-
-  class LevenshteinDistancer
-    def call(a, b)
-      Text::Levenshtein.distance(a, b)
-    end
-  end
 
   class Node
     attr_reader :term, :children
@@ -45,7 +38,7 @@ module BK
   end
 
   class Tree
-    def initialize(distancer = LevenshteinDistancer.new)
+    def initialize(distancer)
       @root = nil
       @distancer = distancer
     end
